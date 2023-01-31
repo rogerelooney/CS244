@@ -11,9 +11,9 @@ void INIT(int a[], int n, int x)
       a[i] = x;
     }
 }
-// void PSLTEN();
-// bool ISWRD();
-// double M03();
+// void PSLTEN(int n) { }
+// bool ISWRD(string n) { }
+// double M03(double n, double o, double p) { }
 
 int main()
 {
