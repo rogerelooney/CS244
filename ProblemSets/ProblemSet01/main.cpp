@@ -11,14 +11,34 @@ void INIT(int a[], int n, int x)
       a[i] = x;
     }
 }
+
+void PSLTEN(int n)
+{
+  
+}
+
+bool ISWRD(string str)
+{
+  for(int i = 0; i < str.size(); i += 1)
+  {
+    if(!isalpha(str[i]))
+    {
+      return false;
+    }
+  }
+  return true;
+}
+
+double M03();
 // void PSLTEN(int n) { }
-// bool ISWRD(string n) { }
+// bool ISWRD(string 'n') { }
 // double M03(double n, double o, double p) { }
 
 int main()
 {
 	//Test Functions Here
-	int arr[20];
+	/*
+  int arr[20];
   INIT(arr, 20, 7);
 
   cout << "{";
@@ -32,5 +52,8 @@ int main()
       }
     }
   cout << "}\n";
+  */
+
+  
 	return 0;
 }
