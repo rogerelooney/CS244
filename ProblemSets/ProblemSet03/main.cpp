@@ -29,5 +29,13 @@ int main()
 	cout << ((PropertyA::Property(A,6))?("has property"):("does not have property")) << "\n\n";
 	cout << "B = "; Print(B,6);
 	cout << ((PropertyA::Property(B,6))?("has property"):("does not have property")) << "\n\n";
+	cout << "A = "; Print(A,6);
+	cout << ((PropertyB::Property(A,6))?("has property"):("does not have property")) << "\n\n";
+	cout << "B = "; Print(B,6);
+	cout << ((PropertyB::Property(B,6))?("has property"):("does not have property")) << "\n\n";
+	cout << "A = "; Print(A,6);
+	cout << ((PropertyC::Property(A,6))?("has property"):("does not have property")) << "\n\n";
+	cout << "B = "; Print(B,6);
+	cout << ((PropertyC::Property(B,6))?("has property"):("does not have property")) << "\n\n";
 	return 0;
 }
