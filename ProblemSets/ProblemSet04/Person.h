@@ -8,8 +8,8 @@ namespace PS4
     class Person
     {
         public:
-        std::string firstName;
-        std::string lastName;
+        string firstName;
+        string lastName;
         short age;
     };
 }

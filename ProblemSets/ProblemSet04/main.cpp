@@ -12,6 +12,19 @@ string FormatInfo(Person& obj)
 	return (obj.lastName + "," + obj.firstName + " (" + to_string(obj.age) + ")");
 }
 
+/*
+string FormatInfo(Window)
+{
+	string
+}
+
+
+string FormatInfo(Pin& obj)
+{
+	return string 
+}
+*/
+
 int main()
 {
 	Person a;
