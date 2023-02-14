@@ -3,7 +3,12 @@
 
 namespace PS4
 {
-    
+    class Window
+    {
+        public:
+        int height;
+        int base;
+    }
 }
 
 #endif
