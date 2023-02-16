@@ -21,10 +21,23 @@ namespace LB2
             currentPlayer = 0;
         }
 
-        Board(const Board& grid)
-        {}
+        Board(const Board& obj)
+        {
+            grid[16] = obj.grid[16];
+            currentPlayer = obj.currentPlayer;
+        }
 
-        Board& operator=(const Board& grid)
+        Board& operator=(const Board& rhs)
+        {
+            if(this != &rhs)
+            {
+                grid[16] = rhs.grid[16];
+                currentPlayer = rhs.currentPlayer;
+            }
+            return *this;
+        }
+
+        ~Board()
         {}
     };
 }

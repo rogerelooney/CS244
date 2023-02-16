@@ -1,11 +1,9 @@
 #ifndef T4WIN_H
 #define T4WIN_H
 
-#include "T4Board.h"
-
 namespace LB2
 {
-    bool Won(const Board& grid)
+    bool Won(const Board& obj)
     {
         for(int i = 0; i < 16; i += 1)
         {
