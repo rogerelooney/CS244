@@ -1,0 +1,17 @@
+Lab 02 Results
+==================================
+Task 01		01.20/02.00
+Task 02		00.50/01.50
+Task 03		01.45/01.50
+==================================
+Total		03.15/05.00
+
+**T4Board.h**
+* missing definitions for a number of methods.
+* several errors in class definition.
+
+**T4Win.h**
+* several errors in the function.
+
+**T4Display.h**
+* conditions of selection statements are invalid.
