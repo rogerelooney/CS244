@@ -12,9 +12,9 @@
  * 08. constant methods can be alloed by any type of class object.
  * 09. static methods do not contain the implicit this pointer parameter; hence, they cannot allow
  * instance fields.
- * 10. static methods can allow static fields.
- * 11. static methods can be allowed with or without a class object.
- * 12. static methods can be allowed by any type of class object.
+ * 10. static methods can access static fields.
+ * 11. static methods can be accessed with or without a class object.
+ * 12. static methods can be accessed by any type of class object.
  * 13. static methods cannot be constant methods.
  * 14. making the ostream operator a friend of a class, allows class objects to be displayed by 
  * any ostream object such as cout
@@ -23,6 +23,7 @@
  * 17. static method syntax: static <<FUNCTION-HEADER>> {<<BODY>>}
  * 18. ostream operator syntax: 
  * friend operator<<(ostream& <<IDENTIFIER>>,const <<CLASS-NAME>>& <<IDENTIFIER>>) {<<BODY>>}
+ * 19. constant methods and instance methods with the same function headers are overloaded functions.
  */
 #ifndef STUDENT_H
 #define STUDENT_H
@@ -49,10 +50,10 @@ namespace LZ
 			firstName = "John";
 			lastName = "Smith";
 			amount = 4;
-			grades = new double[amount];
+			grades = new double[amount]; // Dynamic array with a size of amount.
 			count += 1;
 
-			for(int i = 0;i < 4;i += 1)
+			for(int i = 0; i < 4; i += 1)
 			{
 				grades[i] = 0.0;
 			}
@@ -67,7 +68,7 @@ namespace LZ
 			grades = new double[amount];
 			count += 1;
 
-			for(int i = 0;i < amount;i += 1)
+			for(int i = 0; i < amount; i += 1)
 			{
 				grades[i] = 0.0;
 			}
@@ -85,7 +86,7 @@ namespace LZ
 			amount = obj.amount;
 			grades = new double[amount];
 
-			for(int i = 0;i < amount;i += 1)
+			for(int i = 0; i < amount; i += 1)
 			{
 				grades[i] = obj.grades[i];
 			}
@@ -146,7 +147,7 @@ namespace LZ
 		double Average() const 
 		{
 			double sum = 0.0;
-
+			// amount = 6; // error
 			for(int i = 0;i < amount;i += 1)
 			{
 				sum += grades[i];

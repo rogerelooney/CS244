@@ -1,4 +1,4 @@
-// Anything within comments, was done during a lecture on 02/16.
+// Anything within comments, was done during a lecture on 02/16, with additional notes from 02/23.
 #ifndef ITEM_H
 #define ITEM_H
 
@@ -26,6 +26,23 @@ namespace PS5
             id = obj.id;
             position = new Point();
             *position = *(obj.position);
+        }
+
+        Item& operator=(const Item& rhs)
+        {
+            if(this != &rhs)
+            {
+                id = rhs.id;
+                delete position;
+                position = new Point();
+                *position = *(rhs.position);
+            }
+            return *this;
+        }
+
+        ~Item()
+        {
+            delete position;
         }
         */
     };
