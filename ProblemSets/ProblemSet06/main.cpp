@@ -1,5 +1,8 @@
 #include <iostream>
 #include <string>
+#include "Currency.h"
+#include "Boolean.h"
+#include "Rational.h"
 #include "Util.h"
 using namespace std;
 
