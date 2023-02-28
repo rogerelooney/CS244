@@ -28,11 +28,12 @@ void App()
 	{
 		std::cout << "\nDate Viewer Menu:\n";
 		std::cout << "1. View Date\n";
-	        std::cout << "2. View Day\n";
+	    std::cout << "2. View Day\n";
 		std::cout << "3. Change Day\n";
 		std::cout << "4. View Month\n";
 		std::cout << "5. Change Month\n";
 		std::cout << "6. View Day Of The Week\n";
+		std::cout << "7. Toggle Display Mode\n";
 		std::cout << "\nEnter choice: ";
 		std::cin >> value;
 
@@ -72,6 +73,10 @@ void App()
 		else if(value == 6)
 		{
 			std::cout << "Week Day: " << a.GetWeekDay() << "\n";
+		}
+		else if(value == 7)
+		{
+			a.ToggleMode();
 		}
 		else 
 		{

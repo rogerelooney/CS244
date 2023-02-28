@@ -48,6 +48,7 @@ namespace LZ
 		Month month;
 		int day;
 		int weekDay;
+		bool mode;
 		static const std::string WEEKDAYS[7];
 		static const std::string MONTHS[12];
 		static const int MONTHS_DAYS[12];
@@ -62,8 +63,31 @@ namespace LZ
 		}
 
 		public:
-		DayViewer() : month(JANUARY), day(1), weekDay(0) {}
+		DayViewer() : month(JANUARY), day(1), mode(true) 
+		{
+			SetWeekDay();
+		}
 		
+		DayViewer(const DayViewer& obj)
+		{
+			month = obj.month;
+			day = obj.day;
+			weekDay = obj.weekDay;
+		}
+
+		DayViewer& operator=(const DayViewer& rhs)
+		{
+			if(this != &rhs)
+			{
+				month = rhs.month;
+				day = rhs.day;
+				weekDay = rhs.weekDay;
+			}
+			return *this;
+		}
+
+		~DayViewer() {}
+
 		/*Getter Methods*/
 		Month GetMonth() const 
 		{
@@ -109,13 +133,25 @@ namespace LZ
 			}
 		}	
 
+		void ToggleMode() 
+		{
+			mode = !mode;
+		}
+
 		/*ToString() Method*/
 		std::string ToString() const 
 		{
 			std::stringstream out;
 
-			out << WEEKDAYS[weekDay] << ", " << MONTHS[month] << " " << std::setw(2) << std::setfill('0') << day;
-		     	return out.str();
+			if(mode)
+			{
+				out << WEEKDAYS[weekDay] << ", " << MONTHS[month] << " " << std::setw(2) << std::setfill('0') << day;
+			}
+			else 
+			{
+				out << std::setw(2) << std::setfill('0') << ((int)(month) + 1) << "/" << std::setw(2) << std::setfill('0') << day << "/2023 (" << WEEKDAYS[weekDay] << ")"; 
+			}
+		    return out.str();
 		}
 
 		/*osteam operator*/
