@@ -85,6 +85,36 @@ class Connect4
         {
             cout << "[" + grid[0][i] + "] ";
         }
+
+        cout << "\n4 ";
+        for(int i = 0; i < 8; i += 1)
+        {
+            cout << "[" + grid[1][i] + "] ";
+        }
+
+        cout << "\n3 ";
+        for(int i = 0; i < 8; i += 1)
+        {
+            cout << "[" + grid[2][i] + "] ";
+        }
+
+        cout << "\n2 ";
+        for(int i = 0; i < 8; i += 1)
+        {
+            cout << "[" + grid[3][i] + "] ";
+        }
+
+        cout << "\n1 ";
+        for(int i = 0; i < 8; i += 1)
+        {
+            cout << "[" + grid[4][i] + "] ";
+        }
+
+        cout << "\n0 ";
+        for(int i = 0; i < 8; i += 1)
+        {
+            cout << "[" + grid[5][i] + "] ";
+        }
     }
 
     friend ostream& operator<<(ostream& out, const Connect4& obj)
