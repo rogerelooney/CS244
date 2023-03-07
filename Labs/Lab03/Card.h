@@ -1,6 +1,9 @@
 #ifndef CARD_H
 #define CARD_H
 
+#include <iostream>
+#include <string>
+
 namespace LB3
 {
     class Card
@@ -8,13 +11,13 @@ namespace LB3
         private:
         char suit;
         char symbol;
-        string x;
+        string x, y, z;
 
         public:
         Card()
         {
-            suit[x];
-            symbol[x];
+            suit = x;
+            symbol = x;
         }
 
         Card(const Card& obj)
@@ -31,25 +34,38 @@ namespace LB3
 
         ~Card() {}
 
-        const getter Suit() {}
-
-        const getter Symbol() {}
-
-        setter SetSuit()
+        const char getSuit()
         {
-            
+            return suit;
         }
 
-        setter SetSymbol()
+        const char getSymbol()
         {
+            return symbol;
+        }
 
+        char SetSuit()
+        {
+            suit = Y;
+        }
+
+        char SetSymbol()
+        {
+            symbol = X;
         }
 
         const string ToString()
         {
-            string x = symbol;
-            string y = suit;
-            return [x:y];
+            x = symbol;
+            y = suit;
+            z = "[" x + ":" + y "]";
+            return z;
+        }
+
+        friend ostream& operator<<(ostream& out, const Card& obj)
+        {
+            out << obj.ToString();
+            return out;
         }
     };
 }
