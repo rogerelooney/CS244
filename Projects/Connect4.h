@@ -15,6 +15,8 @@ class Connect4
     private:
     string players[2];
     string grid[6][7];
+    int value;
+    int currentPlayer;
     
     Connect4()
     {
@@ -33,6 +35,8 @@ class Connect4
     {
         players[2] = obj.players[2];
         grid[6][7] = obj.grid[6][7];
+        value = obj.value;
+        currentPlayer = obj.currentPlayer;
     }
 
     Connect4& operator=(const Connect4& rhs)
@@ -41,6 +45,8 @@ class Connect4
         {
             players[2] = rhs.players[2];
             grid[6][7] = rhs.grid[6][7];
+            value = rhs.value;
+            currentPlayer = rhs.currentPlayer;
         }
         return *this;
     }
@@ -55,11 +61,28 @@ class Connect4
 
     bool MakeMove()
     {
-        int x;
+        // Placing the piece
+        for(int i = 0; i < value; i += 1)
+        {
+            if(grid[i][value] != " ")
+            {
+                if(currentPlayer == 0)
+                {
+                    grid[i-1][value] = players[0];
+                }
+                else
+                if(currentPlayer == 1)
+                {
+                    grid[i-1][value] = players[1];
+                }
+                break;
+            }
+        }
+
 
     }
 
-    void Reset()
+    void Reset() // Resets Connect 4 grid
     {
         grid[6][7] = {
             {" ", " ", " ", " ", " ", " ", " "},
@@ -73,44 +96,44 @@ class Connect4
 
     const char CurrentPlayer()
     {
-
+        
     }
 
-    const string ToString()
+    const string ToString() // Prints Connect 4 board
     {
         cout << "   0   1   2   3   4   5   6 \n"; // Top of grid
         
-        cout << "5 ";
+        cout << "5 "; // Row 5
         for(int i = 0; i < 8; i += 1)
         {
             cout << "[" + grid[0][i] + "] ";
         }
 
-        cout << "\n4 ";
+        cout << "\n4 "; // Row 4
         for(int i = 0; i < 8; i += 1)
         {
             cout << "[" + grid[1][i] + "] ";
         }
 
-        cout << "\n3 ";
+        cout << "\n3 "; // Row 3
         for(int i = 0; i < 8; i += 1)
         {
             cout << "[" + grid[2][i] + "] ";
         }
 
-        cout << "\n2 ";
+        cout << "\n2 "; // Row 2
         for(int i = 0; i < 8; i += 1)
         {
             cout << "[" + grid[3][i] + "] ";
         }
 
-        cout << "\n1 ";
+        cout << "\n1 "; // Row 1
         for(int i = 0; i < 8; i += 1)
         {
             cout << "[" + grid[4][i] + "] ";
         }
 
-        cout << "\n0 ";
+        cout << "\n0 "; // Row 0
         for(int i = 0; i < 8; i += 1)
         {
             cout << "[" + grid[5][i] + "] ";
