@@ -61,23 +61,37 @@ class Connect4
 
     bool MakeMove()
     {
-        // Placing the piece
+        // Placing the piece (If possible)
         for(int i = 0; i < value; i += 1)
         {
-            if(grid[i][value] != " ")
+            if(grid[5][value] != " ")
+            {
+                if(currentPlayer == 0)
+                {
+                    grid[5][value] = players[0];
+                }
+                else if(currentPlayer == 1)
+                {
+                    grid[5][value] = players[1];
+                }
+                break;
+            }
+            else if(grid[i][value] != " ")
             {
                 if(currentPlayer == 0)
                 {
                     grid[i-1][value] = players[0];
                 }
-                else
-                if(currentPlayer == 1)
+                else if(currentPlayer == 1)
                 {
                     grid[i-1][value] = players[1];
                 }
                 break;
             }
         }
+
+        // Checking for winner
+        
 
 
     }
