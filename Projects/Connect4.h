@@ -62,22 +62,10 @@ class Connect4
     bool MakeMove()
     {
         // Placing the piece (If possible)
-        for(int i = 0; i < value; i += 1)
+        for(int i = 6; i > value; i -= 1)
         {
-            if(grid[5][value] != " ")
-            {
-                if(currentPlayer == 0)
-                {
-                    grid[5][value] = players[0];
-                }
-                else if(currentPlayer == 1)
-                {
-                    grid[5][value] = players[1];
-                }
-                break;
-            }
-            else if(grid[i][value] != " ")
-            {
+            if(grid[i-1][value] == " ") // Checks row 0/grid[5][value]
+            {  
                 if(currentPlayer == 0)
                 {
                     grid[i-1][value] = players[0];
@@ -88,10 +76,87 @@ class Connect4
                 }
                 break;
             }
-        }
+            else if(grid[i-2][value] == " ") // Checks row 1/grid[4][value]
+            {
+                if(currentPlayer == 0)
+                {
+                    grid[i-2][value] = players[0];
+                }
+                else if(currentPlayer == 1)
+                {
+                    grid[i-2][value] = players[1];
+                }
+                break;
+            }
+            else if(grid[i-3][value] == " ") // Checks row 2/grid[3][value]
+            {
+                if(currentPlayer == 0)
+                {
+                    grid[i-3][value] = players[0];
+                }
+                else if(currentPlayer == 1)
+                {
+                    grid[i-3][value] = players[1];
+                }
+                break;
+            }
+            else if(grid[i-4][value] == " ") // Checks row 3/grid[2][value]
+            {
+                if(currentPlayer == 0)
+                {
+                    grid[i-4][value] = players[0];
+                }
+                else if(currentPlayer == 1)
+                {
+                    grid[i-4][value] = players[1];
+                }
+                break;
+            }
+            else if(grid[i-5][value] == " ") // Checks row 4/grid[1][value]
+            {
+                if(currentPlayer == 0)
+                {
+                    grid[i-5][value] = players[0];
+                }
+                else if(currentPlayer == 1)
+                {
+                    grid[i-5][value] = players[1];
+                }
+                break;
+            }
+            else if(grid[i-5][value] == " ") // Checks row 5/grid[0][value]
+            {
+                if(currentPlayer == 0)
+                {
+                    grid[i-6][value] = players[0];
+                }
+                else if(currentPlayer == 1)
+                {
+                    grid[i-6][value] = players[1];
+                }
+                break;
+            }
+            else // If column is full
+            {
+                cout << "Column Full.\n";
+                break;
+            }
 
         // Checking for winner
-        
+        for(int i = 0; i < 6; i += 1) // Checks Vertically
+        {
+            
+        }
+
+        for(int i = 0; i < 6; i += 1) // Checks Horizontally
+        {
+
+        }
+
+        for(int i = 0; i < 6; i += 1) // Checks Diagonally
+        {
+
+        }
 
 
     }
