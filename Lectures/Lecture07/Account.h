@@ -33,13 +33,17 @@ namespace LZ
 		std::string accountNumber;
 
 		public:
-		Account() : Account(50) {} 
+		Account() : Account(50)
+		{
+			std::cout << "Account Default Constructor Called\n";
+		} 
 		
 		Account(double balance)
 		{
 			this->balance = (balance < 50)?(50):(balance);
 			GenerateAccountNumber();
 			accounts += 1;
+			std::cout << "Account Overloaded Constructor Called\n";
 		}
 
 		Account(const Account& obj)
@@ -47,6 +51,7 @@ namespace LZ
 			balance = obj.balance;
 			GenerateAccountNumber();
 			accounts += 1;
+			std::cout << "Account Copy Constructor Called\n";
 		}
 
 		Account& operator=(const Account& rhs)
@@ -61,6 +66,7 @@ namespace LZ
 		~Account() 
 		{
 			accounts -= 1;
+			std::cout << "Account Destructor Called\n";
 		}
 
 		double GetBalance() const 

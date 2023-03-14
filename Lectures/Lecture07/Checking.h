@@ -15,18 +15,23 @@ namespace LZ
 		double overdraw;
 
 		public:
-		Checking() : Checking(100) {} 
+		Checking() : Checking(100)
+		{
+			std::cout << "Checking Default Constructor Called\n";
+		} 
 		
 		Checking(double balance) : Account(balance)
 		{
 			accountNumber = "6834" + accountNumber.substr(4);
 			overdraw = 0;
+			std::cout << "Checking Overloaded Constructor Called\n";
 		}
 
 		Checking(const Checking& obj) : Account(static_cast<const Account&>(obj))
 		{
 			accountNumber = "6834" + accountNumber.substr(4);
 			overdraw = obj.overdraw;
+			std::cout << "Checking Copy Constructor Called\n";
 		}
 
 		Checking& operator=(const Checking& rhs)
@@ -39,7 +44,10 @@ namespace LZ
 			return *this;
 		}
 
-		~Checking() {}
+		~Checking()
+		{
+			std::cout << "Checking Destructor Called\n";
+		}
 
 		void Deposit(double value) 
 		{
