@@ -41,9 +41,9 @@ void Prompt0()
 
 void Prompt1()
 {
-	Account a[4] = {Account(), Account(75.00), Account(500.00), a[1]}; // d(b) is the same as d = b
+	Account a[4] = {Account(),Account(75.0),Account(500.0),a[1]};
 
-	for(int i = 0; i < 4; i += 1)
+	for(int i = 0;i < 4;i += 1)
 	{
 		cout << a[i] << "\n";
 	}
@@ -51,39 +51,43 @@ void Prompt1()
 	double amount;
 	char c;
 
-	for(int i = 0; i < 4; i += 1)
+	for(int i = 0;i < 4;i += 1)
 	{
-		cout << "For account: " << a[i].GetAccountNumber() << " would you like to\n";
-		cout << "(D)eposit\n";
-		cout << "(W)ithdraw\n";
-		cout << "\nEnter Choice: ";
-		cin >> c;
-		c = toupper(c);
-		if(c == 'D' || c == 'W')
+		while(true)
 		{
-			break;
+			cout << "For account: " << a[i].GetAccountNumber() << " would you like to\n";
+			cout << "(D)eposit\n";
+			cout << "(W)ithdraw\n";
+			cout << "\nEnter choice: ";
+			cin >> c;
+			c = toupper(c);
+
+			if(c == 'D' || c == 'W')
+			{
+				break;
+			}
 		}
-	}
 
-	cout << "Enter the amount: ";
-	cin >> amount;
+		cout << "Enter the amount: ";
+		cin >> amount;
 
-	if(c == 'D')
-	{
-		a[i].Deposit(amount);
+		if(c == 'D')
+		{
+			a[i].Deposit(amount);
+		}
+		else
+		{
+			a[i].Withdraw(amount);
+		}
+		cout << "\nNew balance is " << a[i].GetBalance() << "\n\n";
 	}
-	else
-	{
-		a[i].Withdraw(amount);
-	}
-	cout << "\nNew balance is " << a[i].GetBalance() << "\n";
 }
 
 void Prompt2()
 {
-	Account a[4] = {Account(), Account(75.00), Account(500.00), a[1]}; // d(b) is the same as d = b
+	Savings a[4] = {Savings(),Savings(75.0),Savings(500.0),a[1]};
 
-	for(int i = 0; i < 4; i += 1)
+	for(int i = 0;i < 4;i += 1)
 	{
 		cout << a[i] << "\n";
 	}
@@ -91,41 +95,46 @@ void Prompt2()
 	double amount;
 	char c;
 
-	for(int i = 0; i < 4; i += 1)
+	for(int i = 0;i < 4;i += 1)
 	{
-		cout << "For account: " << a[i].GetAccountNumber() << " would you like to\n";
-		cout << "(D)eposit\n";
-		cout << "(W)ithdraw\n";
-		cout << "(A)dd Interest\n";
-		cout << "\nEnter Choice: ";
-		cin >> c;
-		c = toupper(c);
-		if(c == 'D' || c == 'W' || c == 'A')
+		while(true)
 		{
-			break;
+			cout << "For account: " << a[i].GetAccountNumber() << " would you like to\n";
+			cout << "(D)eposit\n";
+			cout << "(W)ithdraw\n";
+			cout << "(A)dd Interest\n";
+			cout << "\nEnter choice: ";
+			cin >> c;
+			c = toupper(c);
+
+			if(c == 'D' || c == 'W' || c == 'A')
+			{
+				break;
+			}
 		}
-	}
 
-	cout << "Enter the amount: ";
-	cin >> amount;
+		cout << "Enter the amount: ";
+		cin >> amount;
 
-	if(c == 'D')
-	{
-		a[i].Deposit(amount);
-	}
-	else if (c == 'W')
-	{
-		a[i].Withdraw(amount);
-	}
-	else
-	{
+		if(c == 'D')
+		{
+			a[i].Deposit(amount);
+		}
+		else if(c == 'W')
+		{
+			a[i].Withdraw(amount);
+		}
+		else
+		{
+			a[i].ApplyInterest();
+		}
 
+		cout << "\nNew balance is " << a[i].GetBalance() << "\n\n";
 	}
-	cout << "\nNew balance is " << a[i].GetBalance() << "\n";
 }
 
 int main()
 {
-	Prompt1();	
+	Prompt2();			
 	return 0;
 }

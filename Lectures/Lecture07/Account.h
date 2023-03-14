@@ -11,8 +11,8 @@ namespace LZ
 	class Account
 	{
 		private:
-		static int accounts; // How many accounts exist
-		static int accountMeter; // Helps generate the account number
+		static int accounts; //how many accounts exist
+		static int accountMeter; //helps generate the account number
 		double balance;
 
 		void GenerateAccountNumber()
@@ -25,7 +25,7 @@ namespace LZ
 			{
 				id = "0" + id;
 			}
-			// id = std::string(6-id.length(), '0') + id; [Alternative method to the while loop]
+			//id = std::string(6-id.length(),'0') + id;
 			accountNumber = type_branch + id;
 		}
 

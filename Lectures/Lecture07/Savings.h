@@ -16,7 +16,7 @@ namespace LZ
 		static const double interestRate;
 
 		public:
-		Savings() : Savings(100) {} 
+		Savings() : Savings(50) {} 
 		
 		Savings(double balance) : Account(balance)
 		{
@@ -54,7 +54,7 @@ namespace LZ
 			Deposit(value);
 		}
 
-		// Function Overriding
+		//Function Overridding
 		std::string ToString() const
 		{
 			std::stringstream out;
