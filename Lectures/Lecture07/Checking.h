@@ -15,7 +15,7 @@ namespace LZ
 		double overdraw;
 
 		public:
-		Checking() : Checking(100)
+		Checking() : Checking(50) 
 		{
 			std::cout << "Checking Default Constructor Called\n";
 		} 
@@ -44,7 +44,7 @@ namespace LZ
 			return *this;
 		}
 
-		~Checking()
+		~Checking() 
 		{
 			std::cout << "Checking Destructor Called\n";
 		}

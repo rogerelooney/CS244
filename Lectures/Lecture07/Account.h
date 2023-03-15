@@ -33,7 +33,7 @@ namespace LZ
 		std::string accountNumber;
 
 		public:
-		Account() : Account(50)
+		Account() : Account(50) 
 		{
 			std::cout << "Account Default Constructor Called\n";
 		} 
