@@ -112,16 +112,18 @@ void Prompt2()
 				break;
 			}
 		}
-
-		cout << "Enter the amount: ";
-		cin >> amount;
-
 		if(c == 'D')
 		{
+			cout << "Enter the amount: ";
+			cin >> amount;
+
 			a[i].Deposit(amount);
 		}
 		else if(c == 'W')
 		{
+			cout << "Enter the amount: ";
+			cin >> amount;
+
 			a[i].Withdraw(amount);
 		}
 		else
@@ -161,16 +163,18 @@ void Prompt3()
 				break;
 			}
 		}
-
-		cout << "Enter the amount: ";
-		cin >> amount;
-
 		if(c == 'D')
 		{
+			cout << "Enter the amount: ";
+			cin >> amount;
+
 			a[i].Deposit(amount);
 		}
 		else if(c == 'W')
 		{
+			cout << "Enter the amount: ";
+			cin >> amount;
+
 			a[i].Withdraw(amount);
 		}
 
@@ -178,34 +182,40 @@ void Prompt3()
 	}
 }
 
-void WidthdrawAccount(Account& obj, double amount)
+void WidthdrawAccount(Account& obj,double amount)
 {
-	if(obj.GetAcountNumber().substr(0,3) == "9999")
+	if(obj.GetAccountNumber().substr(0,4) == "9999")
 	{
-		obj.Widthdraw(amount);
+		obj.Withdraw(amount);
+		cout << obj << "\n";
+
 	}
-	else if(obj.GetAcountNumber().substr(0,3) == "8152")
+	else if(obj.GetAccountNumber().substr(0,4) == "8152")
 	{
-		static_cast<Savings&>(obj).Widthdraw(amount);
+		static_cast<Savings&>(obj).Withdraw(amount);
 		cout << static_cast<Savings&>(obj) << "\n";
+
 	}
 	else
 	{
-		static_cast<Savings&>(obj).Widthdraw(amount);
-		cout << static_cast<Savings&>(obj) << "\n";
+		static_cast<Checking&>(obj).Withdraw(amount);
+		cout << static_cast<Checking&>(obj) << "\n";
+
 	}
-	obj.Withdraw(amount);
-	cout << obj;
 }
 
-int main()
+void Prompt4()
 {
 	Account a;
 	Savings s;
 	Checking c;
 
-	WidthdrawAccount(a, 100);
-	WidthdrawAccount(s, 100);
-	WidthdrawAccount(c, 100);
+	WidthdrawAccount(a,100);
+	WidthdrawAccount(s,100);
+	WidthdrawAccount(c,100);			
+}
+
+int main()
+{
 	return 0;
 }

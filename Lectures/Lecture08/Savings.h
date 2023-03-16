@@ -19,23 +19,18 @@ namespace LZ
 		static const double interestRate;
 
 		public:
-		Savings() : Savings(50) 
-		{
-			std::cout << "Savings Default Constructor Called\n";
-		} 
+		Savings() : Savings(50) {} 
 		
 		Savings(double balance) : Account(balance)
 		{
 			accountNumber = "8152" + accountNumber.substr(4);
 			interest = 0;
-			std::cout << "Savings Overloaded Constructor Called\n";
 		}
 
 		Savings(const Savings& obj) : Account(static_cast<const Account&>(obj))
 		{
 			accountNumber = "8152" + accountNumber.substr(4);
 			interest = obj.interest;
-			std::cout << "Savings Copy Constructor Called\n";
 		}
 
 		Savings& operator=(const Savings& rhs)
@@ -48,10 +43,7 @@ namespace LZ
 			return *this;
 		}
 
-		~Savings() 
-		{
-			std::cout << "Savings Destructor Called\n";
-		}
+		~Savings() {}
 
 		double GetInterest() const
 		{
