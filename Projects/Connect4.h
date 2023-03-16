@@ -16,7 +16,9 @@ class Connect4
     string players[2];
     string grid[6][7];
     int value;
-    int currentPlayer;
+    int currentRow;
+    string currentPlayer;
+    bool isWinner;
     
     Connect4()
     {
@@ -29,6 +31,8 @@ class Connect4
             {" ", " ", " ", " ", " ", " ", " "},
             {" ", " ", " ", " ", " ", " ", " "}
         };
+        currentPlayer = " ";
+        isWinner = false;
     }
 
     Connect4(const Connect4& obj)
@@ -36,7 +40,9 @@ class Connect4
         players[2] = obj.players[2];
         grid[6][7] = obj.grid[6][7];
         value = obj.value;
+        currentRow = obj.currentRow;
         currentPlayer = obj.currentPlayer;
+        isWinner = obj.isWinner;
     }
 
     Connect4& operator=(const Connect4& rhs)
@@ -46,7 +52,9 @@ class Connect4
             players[2] = rhs.players[2];
             grid[6][7] = rhs.grid[6][7];
             value = rhs.value;
+            currentRow = rhs.currentRow;
             currentPlayer = rhs.currentPlayer;
+            isWinner = rhs.isWinner;
         }
         return *this;
     }
@@ -66,74 +74,38 @@ class Connect4
         {
             if(grid[i-1][value] == " ") // Checks row 0/grid[5][value]
             {  
-                if(currentPlayer == 0)
-                {
-                    grid[i-1][value] = players[0];
-                }
-                else if(currentPlayer == 1)
-                {
-                    grid[i-1][value] = players[1];
-                }
+                grid[i-1][value] = currentPlayer;
+                currentRow = 0;
                 break;
             }
             else if(grid[i-2][value] == " ") // Checks row 1/grid[4][value]
             {
-                if(currentPlayer == 0)
-                {
-                    grid[i-2][value] = players[0];
-                }
-                else if(currentPlayer == 1)
-                {
-                    grid[i-2][value] = players[1];
-                }
+                grid[i-2][value] = currentPlayer;
+                currentRow = 0;
                 break;
             }
             else if(grid[i-3][value] == " ") // Checks row 2/grid[3][value]
             {
-                if(currentPlayer == 0)
-                {
-                    grid[i-3][value] = players[0];
-                }
-                else if(currentPlayer == 1)
-                {
-                    grid[i-3][value] = players[1];
-                }
+                grid[i-3][value] = currentPlayer;
+                currentRow = 0;
                 break;
             }
             else if(grid[i-4][value] == " ") // Checks row 3/grid[2][value]
             {
-                if(currentPlayer == 0)
-                {
-                    grid[i-4][value] = players[0];
-                }
-                else if(currentPlayer == 1)
-                {
-                    grid[i-4][value] = players[1];
-                }
+                grid[i-4][value] = currentPlayer;
+                currentRow = 0;
                 break;
             }
             else if(grid[i-5][value] == " ") // Checks row 4/grid[1][value]
             {
-                if(currentPlayer == 0)
-                {
-                    grid[i-5][value] = players[0];
-                }
-                else if(currentPlayer == 1)
-                {
-                    grid[i-5][value] = players[1];
-                }
+                grid[i-5][value] = currentPlayer;
+                currentRow = 0;
                 break;
             }
-            else if(grid[i-5][value] == " ") // Checks row 5/grid[0][value]
+            else if(grid[i-6][value] == " ") // Checks row 5/grid[0][value]
             {
-                if(currentPlayer == 0)
-                {
-                    grid[i-6][value] = players[0];
-                }
-                else if(currentPlayer == 1)
-                {
-                    grid[i-6][value] = players[1];
-                }
+                grid[i-6][value] = currentPlayer;
+                currentRow = 0;
                 break;
             }
             else // If column is full
@@ -141,24 +113,100 @@ class Connect4
                 cout << "Column Full.\n";
                 break;
             }
+        }
 
         // Checking for winner
-        for(int i = 0; i < 6; i += 1) // Checks Vertically
+        for(int i = 1, j = 0; i < 5; i += 1) // Checks Vertically
         {
-            
+            if(grid[currentRow][value] == grid[currentRow + i][value]) // Checks North
+            {
+                j += 1;
+                
+                if(j == 3)
+                {
+                    isWinner = true;
+                    return isWinner;
+                }
+            }
+            else if(grid[currentRow][value] == grid[currentRow - i][value]) // Checks South
+            {
+                j += 1;
+                
+                if(j == 3)
+                {
+                    isWinner = true;
+                    return isWinner;
+                }
+            }
         }
 
-        for(int i = 0; i < 6; i += 1) // Checks Horizontally
+        for(int i = 1, j = 0; i < 5; i += 1) // Checks Horizontally
         {
-
+            if(grid[currentRow][value] == grid[currentRow][value + i]) // Checks East
+            {
+                j += 1;
+                
+                if(j == 3)
+                {
+                    isWinner = true;
+                    return isWinner;
+                }
+            }
+            else if(grid[currentRow][value] == grid[currentRow][value - 1]) // Checks West
+            {
+                j += 1;
+                
+                if(j == 3)
+                {
+                    isWinner = true;
+                    return isWinner;
+                }
+            }   
         }
 
-        for(int i = 0; i < 6; i += 1) // Checks Diagonally
+        for(int i = 1, j = 0; i < 5; i += 1) // Checks Diagonally
         {
-
+            if(grid[currentRow][value] == grid[currentRow + i][value + i]) // Checks Northeast
+            {
+                j += 1;
+                
+                if(j == 3)
+                {
+                    isWinner = true;
+                    return isWinner;
+                }
+            }
+            else if(grid[currentRow][value] == grid[currentRow - i][value - i]) // Checks Southwest
+            {
+                j += 1;
+                
+                if(j == 3)
+                {
+                    isWinner = true;
+                    return isWinner;
+                }
+            }
+            else if(grid[currentRow][value] == grid[currentRow + i][value - i]) // Checks Northwest
+            {
+                j += 1;
+                
+                if(j == 3)
+                {
+                    isWinner = true;
+                    return isWinner;
+                }
+            }
+            else if(grid[currentRow][value] == grid[currentRow - i][value + i]) // Checks Southeast
+            {
+                j += 1;
+                
+                if(j == 3)
+                {
+                    isWinner = true;
+                    return isWinner;
+                }
+            }
         }
-
-
     }
 
     void Reset() // Resets Connect 4 grid
@@ -171,11 +219,27 @@ class Connect4
             {" ", " ", " ", " ", " ", " ", " "},
             {" ", " ", " ", " ", " ", " ", " "}
         };
+
+        currentPlayer == players[0];
     }
 
     const char CurrentPlayer()
     {
-        
+        if(currentPlayer == " ") // If the game just started, Player X (players[0]) goes first.
+        {
+            currentPlayer = players[0];
+            return currentPlayer;
+        }
+        else if(currentPlayer == "X") // If the current player is Player X, it's Player O's turn.
+        {
+            currentPlayer = players[1];
+            return currentPlayer;
+        }
+        else if(currentPlayer == "O") // If the current player is Player O, it's Player X's turn.
+        {
+            currentPlayer = players[0];
+            return currentPlayer;
+        }
     }
 
     const string ToString() // Prints Connect 4 board
