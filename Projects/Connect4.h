@@ -64,7 +64,7 @@ class Connect4
     public:
     const bool HasWinner()
     {
-
+        
     }
 
     bool MakeMove()
@@ -75,37 +75,37 @@ class Connect4
             if(grid[i-2][value] == " ") // Checks row 0/grid[5][value]
             {  
                 grid[i-2][value] = currentPlayer;
-                currentRow = 0;
+                currentRow = 5;
                 break;
             }
             else if(grid[i-3][value] == " ") // Checks row 1/grid[4][value]
             {
                 grid[i-3][value] = currentPlayer;
-                currentRow = 1;
+                currentRow = 4;
                 break;
             }
             else if(grid[i-4][value] == " ") // Checks row 2/grid[3][value]
             {
                 grid[i-4][value] = currentPlayer;
-                currentRow = 2;
+                currentRow = 3;
                 break;
             }
             else if(grid[i-5][value] == " ") // Checks row 3/grid[2][value]
             {
                 grid[i-5][value] = currentPlayer;
-                currentRow = 3;
+                currentRow = 2;
                 break;
             }
             else if(grid[i-6][value] == " ") // Checks row 4/grid[1][value]
             {
                 grid[i-6][value] = currentPlayer;
-                currentRow = 4;
+                currentRow = 1;
                 break;
             }
             else if(grid[i-7][value] == " ") // Checks row 5/grid[0][value]
             {
                 grid[i-7][value] = currentPlayer;
-                currentRow = 5;
+                currentRow = 0;
                 break;
             }
             else // If column is full
@@ -116,96 +116,51 @@ class Connect4
         }
 
         // Checking for winner
-        for(int i = 1, j = 0; i < 5; i += 1) // Checks Vertically
+        
+        // Checking vertically
+        if(grid[currentRow + 1][value] == currentPlayer && grid[currentRow + 2][value] == currentPlayer && grid[currentRow + 3][value] == currentPlayer)
         {
-            if(grid[currentRow][value] == grid[currentRow + i][value]) // Checks North
-            {
-                j += 1;
-                
-                if(j == 3)
-                {
-                    isWinner = true;
-                    return isWinner;
-                }
-            }
-            else if(grid[currentRow][value] == grid[currentRow - i][value]) // Checks South
-            {
-                j += 1;
-                
-                if(j == 3)
-                {
-                    isWinner = true;
-                    return isWinner;
-                }
-            }
+            isWinner = true;
+            // North
+        }
+        else if(grid[currentRow - 1][value] == currentPlayer && grid[currentRow - 2][value] == currentPlayer && grid[currentRow - 1][value] == currentPlayer)
+        {
+            isWinner = true;
+            // South
         }
 
-        for(int i = 1, j = 0; i < 5; i += 1) // Checks Horizontally
+        // Checking Horizontally
+        if(grid[currentRow][value + 1] == currentPlayer && grid[currentRow][value + 2] == currentPlayer && grid[currentRow][value + 3] == currentPlayer)
         {
-            if(grid[currentRow][value] == grid[currentRow][value + i]) // Checks East
-            {
-                j += 1;
-                
-                if(j == 3)
-                {
-                    isWinner = true;
-                    return isWinner;
-                }
-            }
-            else if(grid[currentRow][value] == grid[currentRow][value - 1]) // Checks West
-            {
-                j += 1;
-                
-                if(j == 3)
-                {
-                    isWinner = true;
-                    return isWinner;
-                }
-            }   
+            isWinner = true;
+            // East
+        }
+        else if(grid[currentRow][value - 1] == currentPlayer && grid[currentRow][value - 2] == currentPlayer && grid[currentRow][value - 3] == currentPlayer)
+        {
+            isWinner = true;
+            // West
         }
 
-        for(int i = 1, j = 0; i < 5; i += 1) // Checks Diagonally
+        // Checking Diagonally
+        if(grid[currentRow + 1][value + 1] == currentPlayer && grid[currentRow + 2][value + 2] == currentPlayer && grid[currentRow + 3][value + 3] == currentPlayer)
         {
-            if(grid[currentRow][value] == grid[currentRow + i][value + i]) // Checks Northeast
-            {
-                j += 1;
-                
-                if(j == 3)
-                {
-                    isWinner = true;
-                    return isWinner;
-                }
-            }
-            else if(grid[currentRow][value] == grid[currentRow - i][value - i]) // Checks Southwest
-            {
-                j += 1;
-                
-                if(j == 3)
-                {
-                    isWinner = true;
-                    return isWinner;
-                }
-            }
-            else if(grid[currentRow][value] == grid[currentRow + i][value - i]) // Checks Northwest
-            {
-                j += 1;
-                
-                if(j == 3)
-                {
-                    isWinner = true;
-                    return isWinner;
-                }
-            }
-            else if(grid[currentRow][value] == grid[currentRow - i][value + i]) // Checks Southeast
-            {
-                j += 1;
-                
-                if(j == 3)
-                {
-                    isWinner = true;
-                    return isWinner;
-                }
-            }
+            isWinner = true;
+            // Northeast
+        }
+        else if(grid[currentRow + 1][value - 1] == currentPlayer && grid[currentRow + 2][value - 2] == currentPlayer && grid[currentRow + 3][value - 3] == currentPlayer)
+        {
+            isWinner = true;
+            // Northwest
+        }
+        else if(grid[currentRow - 1][value + 1] == currentPlayer && grid[currentRow - 2][value + 2] == currentPlayer && grid[currentRow - 3][value + 3] == currentPlayer)
+        {
+            isWinner = true;
+            // Southeast
+        }
+        else if(grid[currentRow - 1][value - 1] == currentPlayer && grid[currentRow - 2][value - 2] == currentPlayer && grid[currentRow - 3][value - 3] == currentPlayer)
+        {
+            isWinner = true;
+            // Southwest
         }
     }
 
@@ -223,7 +178,7 @@ class Connect4
         currentPlayer == players[0];
     }
 
-    const char CurrentPlayer()
+    const char CurrentPlayer() // Determines current player
     {
         if(currentPlayer == " ") // If the game just started, Player X (players[0]) goes first.
         {
@@ -242,7 +197,7 @@ class Connect4
         }
     }
 
-    const string ToString() // Prints Connect 4 board
+    const string ToString() // Prints Connect 4 grid
     {
         cout << "   0   1   2   3   4   5   6 \n"; // Top of grid
         
