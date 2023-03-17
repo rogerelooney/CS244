@@ -70,42 +70,42 @@ class Connect4
     bool MakeMove()
     {
         // Placing the piece (If possible)
-        for(int i = 6; i > value; i -= 1)
+        for(int i = 7; i > value; i -= 1)
         {
-            if(grid[i-1][value] == " ") // Checks row 0/grid[5][value]
+            if(grid[i-2][value] == " ") // Checks row 0/grid[5][value]
             {  
-                grid[i-1][value] = currentPlayer;
-                currentRow = 0;
-                break;
-            }
-            else if(grid[i-2][value] == " ") // Checks row 1/grid[4][value]
-            {
                 grid[i-2][value] = currentPlayer;
                 currentRow = 0;
                 break;
             }
-            else if(grid[i-3][value] == " ") // Checks row 2/grid[3][value]
+            else if(grid[i-3][value] == " ") // Checks row 1/grid[4][value]
             {
                 grid[i-3][value] = currentPlayer;
-                currentRow = 0;
+                currentRow = 1;
                 break;
             }
-            else if(grid[i-4][value] == " ") // Checks row 3/grid[2][value]
+            else if(grid[i-4][value] == " ") // Checks row 2/grid[3][value]
             {
                 grid[i-4][value] = currentPlayer;
-                currentRow = 0;
+                currentRow = 2;
                 break;
             }
-            else if(grid[i-5][value] == " ") // Checks row 4/grid[1][value]
+            else if(grid[i-5][value] == " ") // Checks row 3/grid[2][value]
             {
                 grid[i-5][value] = currentPlayer;
-                currentRow = 0;
+                currentRow = 3;
                 break;
             }
-            else if(grid[i-6][value] == " ") // Checks row 5/grid[0][value]
+            else if(grid[i-6][value] == " ") // Checks row 4/grid[1][value]
             {
                 grid[i-6][value] = currentPlayer;
-                currentRow = 0;
+                currentRow = 4;
+                break;
+            }
+            else if(grid[i-7][value] == " ") // Checks row 5/grid[0][value]
+            {
+                grid[i-7][value] = currentPlayer;
+                currentRow = 5;
                 break;
             }
             else // If column is full
