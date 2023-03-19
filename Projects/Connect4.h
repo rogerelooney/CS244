@@ -64,7 +64,14 @@ class Connect4
     public:
     const bool HasWinner()
     {
-        
+        if(isWinner == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     bool MakeMove()
@@ -175,7 +182,7 @@ class Connect4
             {" ", " ", " ", " ", " ", " ", " "}
         };
 
-        currentPlayer == players[0];
+        currentPlayer = " ";
     }
 
     const char CurrentPlayer() // Determines current player
