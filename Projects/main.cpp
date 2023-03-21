@@ -12,7 +12,7 @@ void GameApp()
 
 	while(true)
 	{
-		while(!game.HasWinner())
+		while(!game.HasWinner() && game.HasMove())
 		{
 			cout << game << "\n";
 			cout << "Current Player: " << game.CurrentPlayer() << "\n\n";
@@ -25,7 +25,17 @@ void GameApp()
 				cout << "Column is invalid\n";
 			}
 		}
-		cout << "\nThe winner is " << game.CurrentPlayer() << "\nRestart [Y]: ";
+
+		if(game.HasWinner())
+		{
+			cout << "\nThe winner is " << game.CurrentPlayer() << "\n"
+		}
+		else 
+		{
+			cout << "\nThe game ended in a draw\n";
+		}
+
+		cout << "Restart [Y]: ";
 		cin >> choice;
 
 		if(toupper(choice) == 'Y')
