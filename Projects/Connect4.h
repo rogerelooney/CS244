@@ -13,11 +13,11 @@ using namespace std;
 class Connect4
 {
     private:
-    string players[2];
-    string grid[6][7];
+    static const std::string players[2];
+    std::string grid[6][7];
     int value;
     int currentRow;
-    string currentPlayer;
+    std::string currentPlayer;
     bool isWinner;
     
     Connect4()
@@ -74,8 +74,28 @@ class Connect4
         }
     }
 
-    bool MakeMove()
+    const bool HasMove()
     {
+        if(grid[0][value] != " ")
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
+    }
+
+    bool MakeMove(int value)
+    {
+        // Is "value" a coulmn?
+        if(value >= 0 && value <= 6) {/* Proceed */}
+        else
+        {
+            return false;
+        }
+
         // Placing the piece (If possible)
         for(int i = 7; i > value; i -= 1)
         {
@@ -117,8 +137,7 @@ class Connect4
             }
             else // If column is full
             {
-                cout << "Column Full.\n";
-                break;
+                return false;
             }
         }
 
@@ -128,11 +147,13 @@ class Connect4
         if(grid[currentRow + 1][value] == currentPlayer && grid[currentRow + 2][value] == currentPlayer && grid[currentRow + 3][value] == currentPlayer)
         {
             isWinner = true;
+            return true;
             // North
         }
         else if(grid[currentRow - 1][value] == currentPlayer && grid[currentRow - 2][value] == currentPlayer && grid[currentRow - 1][value] == currentPlayer)
         {
             isWinner = true;
+            return true;
             // South
         }
 
@@ -140,11 +161,13 @@ class Connect4
         if(grid[currentRow][value + 1] == currentPlayer && grid[currentRow][value + 2] == currentPlayer && grid[currentRow][value + 3] == currentPlayer)
         {
             isWinner = true;
+            return true;
             // East
         }
         else if(grid[currentRow][value - 1] == currentPlayer && grid[currentRow][value - 2] == currentPlayer && grid[currentRow][value - 3] == currentPlayer)
         {
             isWinner = true;
+            return true;
             // West
         }
 
@@ -152,22 +175,37 @@ class Connect4
         if(grid[currentRow + 1][value + 1] == currentPlayer && grid[currentRow + 2][value + 2] == currentPlayer && grid[currentRow + 3][value + 3] == currentPlayer)
         {
             isWinner = true;
+            return true;
             // Northeast
         }
         else if(grid[currentRow + 1][value - 1] == currentPlayer && grid[currentRow + 2][value - 2] == currentPlayer && grid[currentRow + 3][value - 3] == currentPlayer)
         {
             isWinner = true;
+            return true;
             // Northwest
         }
         else if(grid[currentRow - 1][value + 1] == currentPlayer && grid[currentRow - 2][value + 2] == currentPlayer && grid[currentRow - 3][value + 3] == currentPlayer)
         {
             isWinner = true;
+            return true;
             // Southeast
         }
         else if(grid[currentRow - 1][value - 1] == currentPlayer && grid[currentRow - 2][value - 2] == currentPlayer && grid[currentRow - 3][value - 3] == currentPlayer)
         {
             isWinner = true;
+            return true;
             // Southwest
+        }
+
+        // Changing current player (if no winner is determined)
+
+        if(currentPlayer == "X") // If the current player is Player X, it's Player O's turn.
+        {
+            currentPlayer = players[1];
+        }
+        else if(currentPlayer == "O") // If the current player is Player O, it's Player X's turn.
+        {
+            currentPlayer = players[0];
         }
     }
 
@@ -183,6 +221,7 @@ class Connect4
         };
 
         currentPlayer = " ";
+        isWinner = false;
     }
 
     const char CurrentPlayer() // Determines current player
@@ -190,21 +229,19 @@ class Connect4
         if(currentPlayer == " ") // If the game just started, Player X (players[0]) goes first.
         {
             currentPlayer = players[0];
-            return currentPlayer;
+            return 'X';
         }
         else if(currentPlayer == "X") // If the current player is Player X, it's Player O's turn.
         {
-            currentPlayer = players[1];
-            return currentPlayer;
+            return 'X';
         }
         else if(currentPlayer == "O") // If the current player is Player O, it's Player X's turn.
         {
-            currentPlayer = players[0];
-            return currentPlayer;
+            return 'O';
         }
     }
 
-    const string ToString() // Prints Connect 4 grid
+    const std::string ToString() // Prints Connect 4 grid
     {
         cout << "   0   1   2   3   4   5   6 \n"; // Top of grid
         
