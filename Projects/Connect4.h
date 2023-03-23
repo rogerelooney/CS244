@@ -14,11 +14,11 @@ class Connect4
 {
     private:
     static const std::string players[2];
-    std::string grid[6][7];
-    int value;
-    int currentRow;
-    std::string currentPlayer;
-    bool isWinner;
+    std::string grid[6][7]; // Connect 4 grid
+    int value; // Column of player's choice
+    int currentRow; // The row the player's piece was placed in
+    std::string currentPlayer; // Used to keep track of current player
+    bool isWinner; // Declares a winner if any of the directional requirements were met
     
     Connect4()
     {
