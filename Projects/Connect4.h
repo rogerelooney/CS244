@@ -15,7 +15,7 @@ class Connect4
     string grid[6][7]; // Connect 4 grid
     int value; // Column of player's choice
     int currentRow; // The row the player's piece was placed in
-    std::string currentPlayer; // Keeping track of current player
+    string currentPlayer; // Keeping track of current player
     bool isWinner; // Declares winner if any directional requirements were met
     
     Connect4()
@@ -45,7 +45,7 @@ class Connect4
 
     Connect4& operator=(const Connect4& rhs)
     {
-        if(this != rhs)
+        if(this != &rhs)
         {
             string players[2] = rhs.players[2];
             grid[6][7] = rhs.grid[6][7];
