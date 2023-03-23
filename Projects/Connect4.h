@@ -5,25 +5,23 @@
 #include <string>
 #include <sstream>
 #include <cctype>
-#include <iomanip>
-#include <cmath>
 
 using namespace std;
 
 class Connect4
 {
     private:
-    static const std::string players[2];
-    std::string grid[6][7]; // Connect 4 grid
+    static const string players[2]; // Players 'X' & 'O'
+    string grid[6][7]; // Connect 4 grid
     int value; // Column of player's choice
     int currentRow; // The row the player's piece was placed in
-    std::string currentPlayer; // Used to keep track of current player
-    bool isWinner; // Declares a winner if any of the directional requirements were met
+    std::string currentPlayer; // Keeping track of current player
+    bool isWinner; // Declares winner if any directional requirements were met
     
     Connect4()
     {
-        players[2] = {"X", "O"};
-        grid[6][7] = {
+        string players[2] = {"X", "O"};
+        string grid[6][7] = {
             {" ", " ", " ", " ", " ", " ", " "},
             {" ", " ", " ", " ", " ", " ", " "},
             {" ", " ", " ", " ", " ", " ", " "},
@@ -31,13 +29,13 @@ class Connect4
             {" ", " ", " ", " ", " ", " ", " "},
             {" ", " ", " ", " ", " ", " ", " "}
         };
-        currentPlayer = " ";
+        string currentPlayer = " ";
         isWinner = false;
     }
 
     Connect4(const Connect4& obj)
     {
-        players[2] = obj.players[2];
+        string players[2] = obj.players[2];
         grid[6][7] = obj.grid[6][7];
         value = obj.value;
         currentRow = obj.currentRow;
@@ -49,7 +47,7 @@ class Connect4
     {
         if(this != rhs)
         {
-            players[2] = rhs.players[2];
+            string players[2] = rhs.players[2];
             grid[6][7] = rhs.grid[6][7];
             value = rhs.value;
             currentRow = rhs.currentRow;
@@ -211,7 +209,7 @@ class Connect4
 
     void Reset() // Resets Connect 4 grid
     {
-        grid[6][7] = {
+        string grid[6][7] = {
             {" ", " ", " ", " ", " ", " ", " "},
             {" ", " ", " ", " ", " ", " ", " "},
             {" ", " ", " ", " ", " ", " ", " "},
@@ -241,7 +239,7 @@ class Connect4
         }
     }
 
-    const std::string ToString() // Prints Connect 4 grid
+    const string ToString() // Prints Connect 4 grid
     {
         cout << "   0   1   2   3   4   5   6 \n"; // Top of grid
         
