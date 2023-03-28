@@ -77,7 +77,7 @@ namespace LB4
 			return out.str();
 		}
 
-		std::ostream& operator<<(std::ostream& out,const Position& obj)
+		friend std::ostream& operator<<(std::ostream& out,const Position& obj)
 		{
 			out << obj.ToString();
 			return out;
