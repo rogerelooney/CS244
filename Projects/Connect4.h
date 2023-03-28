@@ -35,8 +35,6 @@ class Connect4
 
     Connect4(const Connect4& obj)
     {
-        string players[2] = obj.players[2];
-        grid[6][7] = obj.grid[6][7];
         value = obj.value;
         currentRow = obj.currentRow;
         currentPlayer = obj.currentPlayer;
@@ -47,8 +45,6 @@ class Connect4
     {
         if(this != &rhs)
         {
-            string players[2] = rhs.players[2];
-            grid[6][7] = rhs.grid[6][7];
             value = rhs.value;
             currentRow = rhs.currentRow;
             currentPlayer = rhs.currentPlayer;
