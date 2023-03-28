@@ -60,7 +60,7 @@ class Connect4
     ~Connect4() {}
 
     public:
-    const bool HasWinner()
+    bool HasWinner() const
     {
         if(isWinner == true)
         {
@@ -72,7 +72,7 @@ class Connect4
         }
     }
 
-    const bool HasMove()
+    bool HasMove() const // Determines if there are blank spaces left on the board
     {
         if(grid[0][value] != " ")
         {
@@ -222,11 +222,11 @@ class Connect4
         isWinner = false;
     }
 
-    const char CurrentPlayer() // Determines current player
+    char CurrentPlayer() const // Determines current player
     {
         if(currentPlayer == " ") // If the game just started, Player X (players[0]) goes first.
         {
-            currentPlayer = players[0];
+            string currentPlayer = players[0];
             return 'X';
         }
         else if(currentPlayer == "X") // If the current player is Player X, it's Player O's turn.
@@ -239,7 +239,7 @@ class Connect4
         }
     }
 
-    const string ToString() // Prints Connect 4 grid
+    string ToString() const // Prints Connect 4 grid
     {
         stringstream out;
 
