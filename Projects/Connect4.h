@@ -241,43 +241,47 @@ class Connect4
 
     const string ToString() // Prints Connect 4 grid
     {
-        cout << "   0   1   2   3   4   5   6 \n"; // Top of grid
+        stringstream out;
+
+        out << "   0   1   2   3   4   5   6 "; // Top of grid
         
-        cout << "5 "; // Row 5
+        out << "\n5 "; // Row 5
         for(int i = 0; i < 8; i += 1)
         {
-            cout << "[" + grid[0][i] + "] ";
+            out << "[" + grid[0][i] + "] ";
         }
 
-        cout << "\n4 "; // Row 4
+        out << "\n4 "; // Row 4
         for(int i = 0; i < 8; i += 1)
         {
-            cout << "[" + grid[1][i] + "] ";
+            out << "[" + grid[1][i] + "] ";
         }
 
-        cout << "\n3 "; // Row 3
+        out << "\n3 "; // Row 3
         for(int i = 0; i < 8; i += 1)
         {
-            cout << "[" + grid[2][i] + "] ";
+            out << "[" + grid[2][i] + "] ";
         }
 
-        cout << "\n2 "; // Row 2
+        out << "\n2 "; // Row 2
         for(int i = 0; i < 8; i += 1)
         {
-            cout << "[" + grid[3][i] + "] ";
+            out << "[" + grid[3][i] + "] ";
         }
 
-        cout << "\n1 "; // Row 1
+        out << "\n1 "; // Row 1
         for(int i = 0; i < 8; i += 1)
         {
-            cout << "[" + grid[4][i] + "] ";
+            out << "[" + grid[4][i] + "] ";
         }
 
-        cout << "\n0 "; // Row 0
+        out << "\n0 "; // Row 0
         for(int i = 0; i < 8; i += 1)
         {
-            cout << "[" + grid[5][i] + "] ";
+            out << "[" + grid[5][i] + "] ";
         }
+
+        return out.str();
     }
 
     friend ostream& operator<<(ostream& out, const Connect4& obj)
