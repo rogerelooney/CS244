@@ -148,7 +148,7 @@ class Connect4
             return true;
             // North
         }
-        else if(grid[currentRow - 1][value] == currentPlayer && grid[currentRow - 2][value] == currentPlayer && grid[currentRow - 1][value] == currentPlayer)
+        else if(grid[currentRow - 1][value] == currentPlayer && grid[currentRow - 2][value] == currentPlayer && grid[currentRow - 3][value] == currentPlayer)
         {
             isWinner = true;
             return true;
