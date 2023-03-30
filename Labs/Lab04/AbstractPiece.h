@@ -41,7 +41,7 @@ namespace LB4
 
         ChessPiece(const ChessPiece& obj)
         {
-            location[2] = obj.location[2];
+            location[2] = obj.location[2]; //this is invalid it will never work!!
             moves = obj.moves;
             team = obj.team;
         }
