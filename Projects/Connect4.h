@@ -11,7 +11,6 @@ using namespace std;
 class Connect4
 {
     private:
-    static const string players[2]; // Players 'X' & 'O'
     string grid[6][7]; // Connect 4 grid
     int value; // Column of player's choice
     int currentRow; // The row the player's piece was placed in
@@ -21,7 +20,6 @@ class Connect4
     public:
     Connect4()
     {
-        string players[2] = {"X","O"};
         string grid[6][7] = {
             {" "," "," "," "," "," "," "},
             {" "," "," "," "," "," "," "},
@@ -56,9 +54,50 @@ class Connect4
 
     ~Connect4() {}
 
+    string GetGrid(int r, int c) const 
+    {
+        // r = Row, c = Column
+        return grid[r][c];
+    }
+
+    int GetCurrentRow() const
+    {
+        return currentRow;
+    }
+
+    string GetCurrentPlayer() const
+    {
+        return currentPlayer;
+    }
+
+    bool GetIsWinner() const
+    {
+        return isWinner;
+    }
+
+    void SetGrid(int r, int c, string value)
+    {
+        grid[r][c] = value;
+    }
+
+    void SetCurrentRow(int value)
+    {
+        currentRow = value;
+    }
+
+    void SetCurrentPlayer(string value)
+    {
+        currentPlayer = value;
+    }
+
+    void SetIsWinner(bool value)
+    {
+        isWinner = value;
+    }
+
     bool HasWinner() const
     {
-        if(isWinner == true)
+        if(GetIsWinner() == true)
         {
             return true;
         }
@@ -70,7 +109,7 @@ class Connect4
 
     bool HasMove() const // Determines if there are blank spaces left on the board
     {
-        if(grid[0][value] != " ")
+        if(GetGrid(0, value) != " ")
         {
             return false;
         }
@@ -86,40 +125,40 @@ class Connect4
         // Placing the piece (If possible)
         for(int i = 7; i > value; i -= 1)
         {
-            if(grid[i-2][value] == " ") // Checks row 0/grid[5][value]
+            if(GetGrid(i-2, value) == " ") // Checks row 0/grid[5][value]
             {  
-                grid[i-2][value] = currentPlayer;
-                currentRow = 5;
+                SetGrid(i-2, value, GetCurrentPlayer());
+                SetCurrentRow(5);
                 break;
             }
-            else if(grid[i-3][value] == " ") // Checks row 1/grid[4][value]
+            else if(GetGrid(i-3, value) == " ") // Checks row 1/grid[4][value]
             {
-                grid[i-3][value] = currentPlayer;
-                currentRow = 4;
+                SetGrid(i-3, value, GetCurrentPlayer());
+                SetCurrentRow(4);
                 break;
             }
-            else if(grid[i-4][value] == " ") // Checks row 2/grid[3][value]
+            else if(GetGrid(i-4, value) == " ") // Checks row 2/grid[3][value]
             {
-                grid[i-4][value] = currentPlayer;
-                currentRow = 3;
+                SetGrid(i-4, value, GetCurrentPlayer());
+                SetCurrentRow(3);
                 break;
             }
-            else if(grid[i-5][value] == " ") // Checks row 3/grid[2][value]
+            else if(GetGrid(i-5, value) == " ") // Checks row 3/grid[2][value]
             {
-                grid[i-5][value] = currentPlayer;
-                currentRow = 2;
+                SetGrid(i-5, value, GetCurrentPlayer());
+                SetCurrentRow(2);
                 break;
             }
-            else if(grid[i-6][value] == " ") // Checks row 4/grid[1][value]
+            else if(GetGrid(i-6, value) == " ") // Checks row 4/grid[1][value]
             {
-                grid[i-6][value] = currentPlayer;
-                currentRow = 1;
+                SetGrid(i-6, value, GetCurrentPlayer());
+                SetCurrentRow(1);
                 break;
             }
-            else if(grid[i-7][value] == " ") // Checks row 5/grid[0][value]
+            else if(GetGrid(i-7, value) == " ") // Checks row 5/grid[0][value]
             {
-                grid[i-7][value] = currentPlayer;
-                currentRow = 0;
+                SetGrid(i-7, value, GetCurrentPlayer());
+                SetCurrentRow(0);
                 break;
             }
             else // If column is full
@@ -129,91 +168,93 @@ class Connect4
         }
 
         // Checking vertically for winner (NS)
-        if(grid[currentRow + 1][value] == currentPlayer && grid[currentRow + 2][value] == currentPlayer && grid[currentRow + 3][value] == currentPlayer)
+        if(GetGrid(GetCurrentRow()+1, value) == GetCurrentPlayer() && GetGrid(GetCurrentRow()+2, value) == GetCurrentPlayer() && GetGrid(GetCurrentRow()+3, value) == GetCurrentPlayer())
         {
-            isWinner = true;
+            SetIsWinner(true);
             // North
         }
-        else if(grid[currentRow - 1][value] == currentPlayer && grid[currentRow - 2][value] == currentPlayer && grid[currentRow - 3][value] == currentPlayer)
+        else if(GetGrid(GetCurrentRow()-1, value) == GetCurrentPlayer() && GetGrid(GetCurrentRow()-2, value) == GetCurrentPlayer() && GetGrid(GetCurrentRow()-3, value) == GetCurrentPlayer())
         {
-            isWinner = true;
+            SetIsWinner(true);
             // South
         }
 
         // Checking Horizontally for winner (EW)
-        if(grid[currentRow][value + 1] == currentPlayer && grid[currentRow][value + 2] == currentPlayer && grid[currentRow][value + 3] == currentPlayer)
+        if(GetGrid(GetCurrentRow(), value+1) == GetCurrentPlayer() && GetGrid(GetCurrentRow(), value+2) == GetCurrentPlayer() && GetGrid(GetCurrentRow(), value+3) == GetCurrentPlayer())
         {
-            isWinner = true;
+            SetIsWinner(true);
             // East
         }
-        else if(grid[currentRow][value - 1] == currentPlayer && grid[currentRow][value - 2] == currentPlayer && grid[currentRow][value - 3] == currentPlayer)
+        else if(GetGrid(GetCurrentRow(), value-1) == GetCurrentPlayer() && GetGrid(GetCurrentRow(), value-2)== GetCurrentPlayer() && GetGrid(GetCurrentRow(), value-3) == GetCurrentPlayer())
         {
-            isWinner = true;
+            SetIsWinner(true);
             // West
         }
 
         // Checking Diagonally for winner (NSEW)
-        if(grid[currentRow + 1][value + 1] == currentPlayer && grid[currentRow + 2][value + 2] == currentPlayer && grid[currentRow + 3][value + 3] == currentPlayer)
+        if(GetGrid(GetCurrentRow()+1, value+1) == GetCurrentPlayer() && GetGrid(GetCurrentRow()+2, value+2) == GetCurrentPlayer() && GetGrid(GetCurrentRow()+3, value+3) == GetCurrentPlayer())
         {
-            isWinner = true;
+            SetIsWinner(true);
             // Northeast
         }
-        else if(grid[currentRow + 1][value - 1] == currentPlayer && grid[currentRow + 2][value - 2] == currentPlayer && grid[currentRow + 3][value - 3] == currentPlayer)
+        else if(GetGrid(GetCurrentRow()+1, value-1) == GetCurrentPlayer() && GetGrid(GetCurrentRow()+2, value-2) == GetCurrentPlayer() && GetGrid(GetCurrentRow()+3, value-3) == GetCurrentPlayer())
         {
-            isWinner = true;
+            SetIsWinner(true);
             // Northwest
         }
-        else if(grid[currentRow - 1][value + 1] == currentPlayer && grid[currentRow - 2][value + 2] == currentPlayer && grid[currentRow - 3][value + 3] == currentPlayer)
+        else if(GetGrid(GetCurrentRow()-1, value+1) == GetCurrentPlayer() && GetGrid(GetCurrentRow()-2, value+2) == GetCurrentPlayer() && GetGrid(GetCurrentRow()-3, value+3) == GetCurrentPlayer())
         {
-            isWinner = true;
+            SetIsWinner(true);
             // Southeast
         }
-        else if(grid[currentRow - 1][value - 1] == currentPlayer && grid[currentRow - 2][value - 2] == currentPlayer && grid[currentRow - 3][value - 3] == currentPlayer)
+        else if(GetGrid(GetCurrentRow()-1, value-1) == GetCurrentPlayer() && GetGrid(GetCurrentRow()-2, value-2) == GetCurrentPlayer() && GetGrid(GetCurrentRow()-3, value-3) == GetCurrentPlayer())
         {
-            isWinner = true;
+            SetIsWinner(true);
             // Southwest
         }
 
         //If a winner is determined...
-        if(isWinner == true)
+        if(GetIsWinner() == true)
         {
             return true;
         }
-        else if(currentPlayer == "X") // Else if the current player is Player X, it's Player O's turn.
+        else if(GetCurrentPlayer() == "X") // Else if the current player is Player X, it's Player O's turn.
         {
-            currentPlayer = "O";
+            SetCurrentPlayer("O");
             return true;
         }
-        else if(currentPlayer == "O") // Else if the current player is Player O, it's Player X's turn.
+        else if(GetCurrentPlayer() == "O") // Else if the current player is Player O, it's Player X's turn.
         {
-            currentPlayer = "X";
+            SetCurrentPlayer("X");
             return true;
         }
     }
 
     void Reset() // Resets Connect 4 grid
     {
-        string grid[6][7] = {
-            {" "," "," "," "," "," "," "},
-            {" "," "," "," "," "," "," "},
-            {" "," "," "," "," "," "," "},
-            {" "," "," "," "," "," "," "},
-            {" "," "," "," "," "," "," "},
-            {" "," "," "," "," "," "," "}
-        };
+       for(int i = 0; i < 6; i += 1)
+       {
+            SetGrid(i, 0, " ");
+            SetGrid(i, 1, " ");
+            SetGrid(i, 2, " ");
+            SetGrid(i, 3, " ");
+            SetGrid(i, 4, " ");
+            SetGrid(i, 5, " ");
+            SetGrid(i, 6, " ");
+       }
 
-        currentPlayer = " ";
-        isWinner = false;
+        SetCurrentPlayer(" ");
+        SetIsWinner(false);
     }
 
     char CurrentPlayer() const // Determines current player
     {
-        if(currentPlayer == " ") // If the game just started, Player X (players[0]) goes first.
+        if(GetCurrentPlayer() == " ") // If the game just started, Player X (players[0]) goes first.
         {
-            string currentPlayer = "X";
+            string SetCurrentPlayer("X");
             return 'X';
         }
-        else if(currentPlayer == "X")
+        else if(GetCurrentPlayer() == "X")
         {
             return 'X';
         }
@@ -230,32 +271,32 @@ class Connect4
         out << "\n5 "; // Row 5
         for(int i = 0; i < 8; i += 1)
         {
-            out << "[" + grid[0][i] + "] ";
+            out << "[" + GetGrid(0, i) + "] ";
         }
         out << "\n4 "; // Row 4
         for(int i = 0; i < 8; i += 1)
         {
-            out << "[" + grid[1][i] + "] ";
+            out << "[" + GetGrid(1, i) + "] ";
         }
         out << "\n3 "; // Row 3
         for(int i = 0; i < 8; i += 1)
         {
-            out << "[" + grid[2][i] + "] ";
+            out << "[" + GetGrid(2, i) + "] ";
         }
         out << "\n2 "; // Row 2
         for(int i = 0; i < 8; i += 1)
         {
-            out << "[" + grid[3][i] + "] ";
+            out << "[" + GetGrid(3, i) + "] ";
         }
         out << "\n1 "; // Row 1
         for(int i = 0; i < 8; i += 1)
         {
-            out << "[" + grid[4][i] + "] ";
+            out << "[" + GetGrid(4, i) + "] ";
         }
         out << "\n0 "; // Row 0
         for(int i = 0; i < 8; i += 1)
         {
-            out << "[" + grid[5][i] + "] ";
+            out << "[" + GetGrid(5, i) + "] ";
         }
         return out.str();
     }
