@@ -16,18 +16,19 @@ class Connect4
     int value; // Column of player's choice
     int currentRow; // The row the player's piece was placed in
     string currentPlayer; // Keeping track of current player
-    bool isWinner; // Declares winner if any directional requirements were met
+    bool isWinner; // Declares winner if any requirements were met
     
+    public:
     Connect4()
     {
-        string players[2] = {"X", "O"};
+        string players[2] = {"X","O"};
         string grid[6][7] = {
-            {" ", " ", " ", " ", " ", " ", " "},
-            {" ", " ", " ", " ", " ", " ", " "},
-            {" ", " ", " ", " ", " ", " ", " "},
-            {" ", " ", " ", " ", " ", " ", " "},
-            {" ", " ", " ", " ", " ", " ", " "},
-            {" ", " ", " ", " ", " ", " ", " "}
+            {" "," "," "," "," "," "," "},
+            {" "," "," "," "," "," "," "},
+            {" "," "," "," "," "," "," "},
+            {" "," "," "," "," "," "," "},
+            {" "," "," "," "," "," "," "},
+            {" "," "," "," "," "," "," "}
         };
         string currentPlayer = " ";
         isWinner = false;
@@ -55,7 +56,6 @@ class Connect4
 
     ~Connect4() {}
 
-    public:
     bool HasWinner() const
     {
         if(isWinner == true)
@@ -83,13 +83,6 @@ class Connect4
 
     bool MakeMove(int value)
     {
-        // Is "value" a coulmn?
-        if(value >= 0 && value <= 6) {/* Proceed */}
-        else
-        {
-            return false;
-        }
-
         // Placing the piece (If possible)
         for(int i = 7; i > value; i -= 1)
         {
@@ -135,83 +128,78 @@ class Connect4
             }
         }
 
-        // Checking for winner
-        
-        // Checking vertically
+        // Checking vertically for winner (NS)
         if(grid[currentRow + 1][value] == currentPlayer && grid[currentRow + 2][value] == currentPlayer && grid[currentRow + 3][value] == currentPlayer)
         {
             isWinner = true;
-            return true;
             // North
         }
         else if(grid[currentRow - 1][value] == currentPlayer && grid[currentRow - 2][value] == currentPlayer && grid[currentRow - 3][value] == currentPlayer)
         {
             isWinner = true;
-            return true;
             // South
         }
 
-        // Checking Horizontally
+        // Checking Horizontally for winner (EW)
         if(grid[currentRow][value + 1] == currentPlayer && grid[currentRow][value + 2] == currentPlayer && grid[currentRow][value + 3] == currentPlayer)
         {
             isWinner = true;
-            return true;
             // East
         }
         else if(grid[currentRow][value - 1] == currentPlayer && grid[currentRow][value - 2] == currentPlayer && grid[currentRow][value - 3] == currentPlayer)
         {
             isWinner = true;
-            return true;
             // West
         }
 
-        // Checking Diagonally
+        // Checking Diagonally for winner (NSEW)
         if(grid[currentRow + 1][value + 1] == currentPlayer && grid[currentRow + 2][value + 2] == currentPlayer && grid[currentRow + 3][value + 3] == currentPlayer)
         {
             isWinner = true;
-            return true;
             // Northeast
         }
         else if(grid[currentRow + 1][value - 1] == currentPlayer && grid[currentRow + 2][value - 2] == currentPlayer && grid[currentRow + 3][value - 3] == currentPlayer)
         {
             isWinner = true;
-            return true;
             // Northwest
         }
         else if(grid[currentRow - 1][value + 1] == currentPlayer && grid[currentRow - 2][value + 2] == currentPlayer && grid[currentRow - 3][value + 3] == currentPlayer)
         {
             isWinner = true;
-            return true;
             // Southeast
         }
         else if(grid[currentRow - 1][value - 1] == currentPlayer && grid[currentRow - 2][value - 2] == currentPlayer && grid[currentRow - 3][value - 3] == currentPlayer)
         {
             isWinner = true;
-            return true;
             // Southwest
         }
 
-        // Changing current player (if no winner is determined)
-
-        if(currentPlayer == "X") // If the current player is Player X, it's Player O's turn.
+        //If a winner is determined...
+        if(isWinner == true)
         {
-            currentPlayer = players[1];
+            return true;
         }
-        else if(currentPlayer == "O") // If the current player is Player O, it's Player X's turn.
+        else if(currentPlayer == "X") // Else if the current player is Player X, it's Player O's turn.
         {
-            currentPlayer = players[0];
+            currentPlayer = "O";
+            return true;
+        }
+        else if(currentPlayer == "O") // Else if the current player is Player O, it's Player X's turn.
+        {
+            currentPlayer = "X";
+            return true;
         }
     }
 
     void Reset() // Resets Connect 4 grid
     {
         string grid[6][7] = {
-            {" ", " ", " ", " ", " ", " ", " "},
-            {" ", " ", " ", " ", " ", " ", " "},
-            {" ", " ", " ", " ", " ", " ", " "},
-            {" ", " ", " ", " ", " ", " ", " "},
-            {" ", " ", " ", " ", " ", " ", " "},
-            {" ", " ", " ", " ", " ", " ", " "}
+            {" "," "," "," "," "," "," "},
+            {" "," "," "," "," "," "," "},
+            {" "," "," "," "," "," "," "},
+            {" "," "," "," "," "," "," "},
+            {" "," "," "," "," "," "," "},
+            {" "," "," "," "," "," "," "}
         };
 
         currentPlayer = " ";
@@ -222,14 +210,14 @@ class Connect4
     {
         if(currentPlayer == " ") // If the game just started, Player X (players[0]) goes first.
         {
-            string currentPlayer = players[0];
+            string currentPlayer = "X";
             return 'X';
         }
-        else if(currentPlayer == "X") // If the current player is Player X, it's Player O's turn.
+        else if(currentPlayer == "X")
         {
             return 'X';
         }
-        else if(currentPlayer == "O") // If the current player is Player O, it's Player X's turn.
+        else
         {
             return 'O';
         }
@@ -238,45 +226,37 @@ class Connect4
     string ToString() const // Prints Connect 4 grid
     {
         stringstream out;
-
         out << "   0   1   2   3   4   5   6 "; // Top of grid
-        
         out << "\n5 "; // Row 5
         for(int i = 0; i < 8; i += 1)
         {
             out << "[" + grid[0][i] + "] ";
         }
-
         out << "\n4 "; // Row 4
         for(int i = 0; i < 8; i += 1)
         {
             out << "[" + grid[1][i] + "] ";
         }
-
         out << "\n3 "; // Row 3
         for(int i = 0; i < 8; i += 1)
         {
             out << "[" + grid[2][i] + "] ";
         }
-
         out << "\n2 "; // Row 2
         for(int i = 0; i < 8; i += 1)
         {
             out << "[" + grid[3][i] + "] ";
         }
-
         out << "\n1 "; // Row 1
         for(int i = 0; i < 8; i += 1)
         {
             out << "[" + grid[4][i] + "] ";
         }
-
         out << "\n0 "; // Row 0
         for(int i = 0; i < 8; i += 1)
         {
             out << "[" + grid[5][i] + "] ";
         }
-
         return out.str();
     }
 
