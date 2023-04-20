@@ -107,22 +107,31 @@ class Connect4
         }
     }
 
-    bool HasMove() const // Determines if there are blank spaces left on the board
+    bool HasMove() const // Determines if there are blank spaces left on the board.
     {
-        if(GetGrid(0, value) != " ")
+        if(GetIsWinner() == true) // If there is already a winner, then there's no need to check spaces.
         {
             return false;
         }
-        else
+        
+        for(int i = 0, full = 0; i < 7; i += 1) // Checks top row of Connect 4 grid.
         {
-            return true;
-        }
+            if(GetGrid(0, i) != " ")
+            {
+                full += 1;
+            }
 
+            if(full == 6)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     bool MakeMove(int value)
     {
-        // Placing the piece (If possible)
+        // Placing the piece (If possible).
         for(int i = 7; i > value; i -= 1)
         {
             if(GetGrid(i-2, value) == " ") // Checks row 0/grid[5][value]
@@ -161,7 +170,7 @@ class Connect4
                 SetCurrentRow(0);
                 break;
             }
-            else // If column is full
+            else // If column is full...
             {
                 return false;
             }
