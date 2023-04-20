@@ -28,7 +28,7 @@ void GameApp()
 
 		if(game.HasWinner())
 		{
-			cout << "\nThe winner is " << game.CurrentPlayer() << "\n"
+			cout << "\nThe winner is " << game.CurrentPlayer() << "\n";
 		}
 		else 
 		{
