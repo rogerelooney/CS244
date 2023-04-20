@@ -145,9 +145,9 @@ class Connect4
 
     bool HasMove() const // Determines if there are blank spaces left on the board.
     {
-        for(int i = 0, j = 0, full = 0; j < 7; j += 1)
+        for(int i = 0, full = 0; i < 7; i += 1)
         {
-            if(grid[i][j] != " ")
+            if(grid[0][i] != " ")
             {
               full += 1;
             }
