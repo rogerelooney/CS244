@@ -34,6 +34,7 @@ class Connect4
                 j += 1;
             }
         }
+        currentRow = 0;
         currentPlayer = "X";
         isWinner = false;
     }
@@ -139,33 +140,21 @@ class Connect4
 
     bool HasWinner() const
     {
-        if(GetIsWinner() == true)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return GetIsWinner();
     }
 
     bool HasMove() const // Determines if there are blank spaces left on the board.
     {
-        if(GetIsWinner() == true) // If there is already a winner, then there's no need to check spaces.
+        for(int i = 0, j = 0, full = 0; j < 7; j += 1)
         {
-            return false;
-        }
-        
-        for(int i = 0, full = 0; i < 7; i += 1) // Checks top row of Connect 4 grid.
-        {
-            if(GetGrid(0, i) != " ")
+            if(grid[i][j] != " ")
             {
-                full += 1;
+              full += 1;
             }
 
             if(full == 6)
             {
-                return false;
+              return false;
             }
         }
         return true;
@@ -174,45 +163,15 @@ class Connect4
     bool MakeMove(int value)
     {
         // Placing the piece (If possible).
-        for(int i = 7; i > value; i -= 1)
+        for(int i = 5; i > value; i -= 1)
         {
-            if(GetGrid(i-2, value) == " ") // Checks row 0/grid[5][value]
+            if(GetGrid(i, value) == " ") // Checks row 0/grid[5][value]
             {  
-                SetGrid(i-2, value, GetCurrentPlayer());
-                SetCurrentRow(5);
+                SetGrid(i, value, GetCurrentPlayer());
+                SetCurrentRow(i);
                 break;
             }
-            else if(GetGrid(i-3, value) == " ") // Checks row 1/grid[4][value]
-            {
-                SetGrid(i-3, value, GetCurrentPlayer());
-                SetCurrentRow(4);
-                break;
-            }
-            else if(GetGrid(i-4, value) == " ") // Checks row 2/grid[3][value]
-            {
-                SetGrid(i-4, value, GetCurrentPlayer());
-                SetCurrentRow(3);
-                break;
-            }
-            else if(GetGrid(i-5, value) == " ") // Checks row 3/grid[2][value]
-            {
-                SetGrid(i-5, value, GetCurrentPlayer());
-                SetCurrentRow(2);
-                break;
-            }
-            else if(GetGrid(i-6, value) == " ") // Checks row 4/grid[1][value]
-            {
-                SetGrid(i-6, value, GetCurrentPlayer());
-                SetCurrentRow(1);
-                break;
-            }
-            else if(GetGrid(i-7, value) == " ") // Checks row 5/grid[0][value]
-            {
-                SetGrid(i-7, value, GetCurrentPlayer());
-                SetCurrentRow(0);
-                break;
-            }
-            else // If column is full...
+            else
             {
                 return false;
             }
@@ -290,7 +249,7 @@ class Connect4
                 break;
             }
             
-            SetGrid(i, j, " ");
+            grid[i][j] = " ";
             
             if(i == 5)
             {
@@ -298,9 +257,9 @@ class Connect4
                 j += 1;
             }
         }
-
-        SetCurrentPlayer(" ");
-        SetIsWinner(false);
+        currentRow = 0;
+        currentPlayer = "X";
+        isWinner = false;
     }
 
     char CurrentPlayer() const // Determines current player
