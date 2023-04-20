@@ -1,0 +1,16 @@
+Lab 05 Results
+==================================
+Task 01		01.80/02.00
+Task 02		01.20/01.50
+Task 03		01.20/01.50
+==================================
+Total		04.20/05.00
+
+*** KeyPad.h ***
+* AddValue() and ToString() contains errors.
+
+*** Encoders.h ***
+* methods to both classes contain errors.
+
+*** EncodedKeyPads.h ***
+* definitions missing from Encipher() methods.
