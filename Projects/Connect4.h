@@ -12,7 +12,6 @@ class Connect4
 {
     private:
     string grid[6][7]; // Connect 4 grid
-    int value; // Column of player's choice
     int currentRow; // The row the player's piece was placed in
     string currentPlayer; // Keeping track of current player
     bool isWinner; // Declares winner if any requirements were met
@@ -20,21 +19,42 @@ class Connect4
     public:
     Connect4()
     {
-        string grid[6][7] = {
-            {" "," "," "," "," "," "," "},
-            {" "," "," "," "," "," "," "},
-            {" "," "," "," "," "," "," "},
-            {" "," "," "," "," "," "," "},
-            {" "," "," "," "," "," "," "},
-            {" "," "," "," "," "," "," "}
-        };
-        string currentPlayer = " ";
+        for(int i = 0, j = 0; i < 6; i += 1)
+        {
+            if(j == 6)
+            {
+                break;
+            }
+            
+            grid[i][j] = " ";
+            
+            if(i == 5)
+            {
+                i = 0;
+                j += 1;
+            }
+        }
+        currentPlayer = "X";
         isWinner = false;
     }
 
     Connect4(const Connect4& obj)
     {
-        value = obj.value;
+        for(int i = 0, j = 0; i < 6; i += 1)
+        {
+            if(j == 6)
+            {
+                break;
+            }
+            
+            grid[i][j] = obj.grid[i][j];
+            
+            if(i == 5)
+            {
+                i = 0;
+                j += 1;
+            }
+        }
         currentRow = obj.currentRow;
         currentPlayer = obj.currentPlayer;
         isWinner = obj.isWinner;
@@ -44,7 +64,21 @@ class Connect4
     {
         if(this != &rhs)
         {
-            value = rhs.value;
+            for(int i = 0, j = 0; i < 6; i += 1)
+            {
+                if(j == 6)
+                {
+                    break;
+                }
+            
+                grid[i][j] = rhs.grid[i][j];
+            
+                if(i == 5)
+                {
+                    i = 0;
+                    j += 1;
+                }
+            }
             currentRow = rhs.currentRow;
             currentPlayer = rhs.currentPlayer;
             isWinner = rhs.isWinner;
@@ -53,6 +87,9 @@ class Connect4
     }
 
     ~Connect4() {}
+
+    private:
+    // Getters
 
     string GetGrid(int r, int c) const 
     {
@@ -75,6 +112,8 @@ class Connect4
         return isWinner;
     }
 
+    // Setters
+
     void SetGrid(int r, int c, string value)
     {
         grid[r][c] = value;
@@ -94,6 +133,9 @@ class Connect4
     {
         isWinner = value;
     }
+
+    public:
+    // Other Methods
 
     bool HasWinner() const
     {
@@ -241,16 +283,21 @@ class Connect4
 
     void Reset() // Resets Connect 4 grid
     {
-       for(int i = 0; i < 6; i += 1)
-       {
-            SetGrid(i, 0, " ");
-            SetGrid(i, 1, " ");
-            SetGrid(i, 2, " ");
-            SetGrid(i, 3, " ");
-            SetGrid(i, 4, " ");
-            SetGrid(i, 5, " ");
-            SetGrid(i, 6, " ");
-       }
+       for(int i = 0, j = 0; i < 6; i += 1)
+        {
+            if(j == 6)
+            {
+                break;
+            }
+            
+            SetGrid(i, j, " ");
+            
+            if(i == 5)
+            {
+                i = 0;
+                j += 1;
+            }
+        }
 
         SetCurrentPlayer(" ");
         SetIsWinner(false);
@@ -258,16 +305,11 @@ class Connect4
 
     char CurrentPlayer() const // Determines current player
     {
-        if(GetCurrentPlayer() == " ") // If the game just started, Player X (players[0]) goes first.
-        {
-            string SetCurrentPlayer("X");
-            return 'X';
-        }
-        else if(GetCurrentPlayer() == "X")
+        if(GetCurrentPlayer() == "X")
         {
             return 'X';
         }
-        else
+        else if(GetCurrentPlayer() == "O")
         {
             return 'O';
         }
