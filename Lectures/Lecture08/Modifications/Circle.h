@@ -75,6 +75,9 @@ namespace LZ
 			return out;
 		}
 	};
+
+	const double Circle::PI = 3.1415;
+
 }
 
 #endif

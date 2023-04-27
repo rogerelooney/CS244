@@ -4,6 +4,11 @@
 #include "Account.h"
 #include "Checking.h"
 #include "Savings.h"
+#include "Shape.h"
+#include "Rectangle.h"
+#include "Square.h"
+#include "Circle.h"
+#include "Triangle.h"
 using namespace std;
 using namespace LZ;
 
@@ -41,24 +46,8 @@ void Prompt1()
 
 void WidthdrawAccount(Account& obj,double amount)
 {
-	if(obj.GetAccountNumber().substr(0,4) == "9999")
-	{
-		obj.Withdraw(amount);
-		cout << obj << "\n";
-
-	}
-	else if(obj.GetAccountNumber().substr(0,4) == "8152")
-	{
-		static_cast<Savings&>(obj).Withdraw(amount);
-		cout << static_cast<Savings&>(obj) << "\n";
-
-	}
-	else
-	{
-		static_cast<Checking&>(obj).Withdraw(amount);
-		cout << static_cast<Checking&>(obj) << "\n";
-
-	}
+	obj.Withdraw(amount);
+	cout << obj << "\n";
 }
 
 void Prompt2()
@@ -71,8 +60,33 @@ void Prompt2()
 	WidthdrawAccount(s,100);
 	WidthdrawAccount(c,100);			
 }
-	
+
+void ShapeStats(const Shape& obj)
+{
+	cout << "Area: " << obj.Area() << "\n";
+	cout << "Perimeter: " << obj.Perimeter() << "\n";
+	cout << "Diminsions: " << obj << "\n";
+}
+
+void Prompt4() 
+{
+	Shape* a[4] = {new Rectangle(17,38), new Square(10), new Circle(4), new Triangle(3,4,5)};
+
+	for(int i = 0;i < 4;i += 1)
+	{
+		cout << "Shape " << (i + 1) << ":\n";
+		ShapeStats(*a[i]);
+		cout << "\n";
+	}
+
+	for(int i = 0;i < 4;i += 1)
+	{
+		delete a[i];
+	}
+}
+
 int main()
 {
+	Prompt1();
 	return 0;
 }

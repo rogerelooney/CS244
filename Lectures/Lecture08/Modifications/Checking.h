@@ -83,6 +83,7 @@ namespace LZ
 		{
 			std::stringstream out;
 
+			out << "Checking ToString()\n";
 			if(!IsOverdrawn())
 			{
 				out << Account::ToString();

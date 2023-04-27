@@ -3,6 +3,7 @@
 
 #include "Shape.h"
 #include <iomanip>
+#include <cmath>
 
 namespace LZ
 {
@@ -21,7 +22,7 @@ namespace LZ
 				{
 					if(sides[j] > sides[j+1])
 					{
-						t = sides[j];
+						double t = sides[j];
 						sides[j] = sides[j+1];
 						sides[j+1] = t;
 					}
@@ -109,6 +110,12 @@ namespace LZ
 			return sum;
 		}
 
+		double Area() const
+		{
+			double s = (sides[0] + sides[1] + sides[2]) / 2;
+			return sqrt(s * (s - sides[0]) * (s - sides[1]) * (s - sides[2]));
+		}
+
 		std::string ToString() const
 		{
 			std::stringstream out;
@@ -125,6 +132,12 @@ namespace LZ
 			}	
 		       	out << "]";
 			return out.str();
+		}
+
+		friend std::ostream& operator<<(std::ostream& out,const Triangle& obj)
+		{
+			out << obj.ToString();
+			return out;
 		}
 	};
 }

@@ -82,7 +82,7 @@ namespace LZ
 			return 2 * (length + width);
 		}
 
-		virtual double Area() const
+		double Area() const
 		{
 			return (length * width);
 		}

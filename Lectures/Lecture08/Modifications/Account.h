@@ -94,10 +94,11 @@ namespace LZ
 			}
 		}
 
-		std::string ToString() const 
+		virtual std::string ToString() const 
 		{
 			std::stringstream out;
 
+			out << "Account or Savings ToString()\n";
 			out << "Acct: " << accountNumber << "\n";
 			out << "$ " << std::fixed << std::setprecision(2) << balance;
 			return out.str();

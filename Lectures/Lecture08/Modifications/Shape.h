@@ -16,6 +16,11 @@ namespace LZ
 		virtual double Perimeter() const = 0;
 		virtual double Area() const = 0;
 		virtual std::string ToString() const = 0;
+		friend std::ostream& operator<<(std::ostream& out,const Shape& obj)
+		{
+			out << obj.ToString();
+			return out;
+		}
 	};
 }
 
