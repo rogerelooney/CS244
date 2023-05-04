@@ -6,7 +6,7 @@ int main()
 {
     Queue<int> q;
 
-    for(int i = 100; i <= 200; i += 20)
+    for(int i = 100;i <= 200;i += 20)
     {
         q.Enqueue(i);
         std::cout << i << " ";

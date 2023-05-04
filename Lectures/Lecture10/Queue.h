@@ -7,14 +7,14 @@
 #include "Node.h"
 
 template <class T>
-class Queue
+class Queue 
 {
     private:
     Node<T>* front;
     Node<T>* back;
 
     public:
-    Queue()
+    Queue() 
     {
         front = NULL;
         back = NULL;
@@ -55,7 +55,7 @@ class Queue
         }
     }
 
-    const T& Peek() const
+    const T& Peek() const 
     {
         if(front != NULL)
         {
@@ -64,12 +64,12 @@ class Queue
         throw "empty queue";
     }
 
-    bool IsEmpty() const
+    bool IsEmpty() const 
     {
         return (front == NULL);
     }
 
-    ~Queue()
+    ~Queue() 
     {
         Node<T>* t;
 
@@ -81,7 +81,6 @@ class Queue
             t = NULL;
         }
     }
-
 };
 
 #endif
